@@ -1,48 +1,46 @@
-let computer = "";
+const playerText = document.querySelector("#playerChoice");
+const computerText = document.querySelector("#computerChoice");
+const resultText = document.querySelector("#resultText");
+const optionBtns = document.querySelectorAll(".optionBtn");
+
+let player;
+let computer;
+let result;
+
+optionBtns.forEach((button) =>
+  button.addEventListener("click", () => {
+    player = button.textContent;
+    compChoice();
+    playerText.textContent = `Player: ${player}`;
+    computerText.textContent = `Computer: ${computer}`;
+    resultText.textContent = checkWinner();
+  })
+);
 
 function compChoice() {
-  let rand = Math.floor(Math.random() * 3) + 1;
+  const rand = Math.floor(Math.random() * 3) + 1;
 
   switch (rand) {
     case 1:
-      computer = "rock";
+      computer = "Rock";
       break;
     case 2:
-      computer = "paper";
+      computer = "Paper";
       break;
     case 3:
-      computer = "scissors";
+      computer = "Scissors";
       break;
   }
-  return computer;
 }
 
-let hpoints = 0;
-let cpoints = 0;
-
-let rounds = Number(prompt("How many rounds\n"));
-
-let i = 0;
-
-while (i < rounds) {
-  let comp = compChoice();
-  let human = prompt("Choose\n");
-
-  if (human === comp) {
-    alert("It is a tie!");
-  } else if (human === "paper" && comp === "rock") {
-    alert("human wins");
-    hpoints += 1;
-  } else if (human === "rock" && comp === "scissors") {
-    alert("human wins");
-    hpoints += 1;
-  } else if (human === "scissors" && comp === "paper") {
-    alert("human wins");
-    hpoints += 1;
-  } else {
-    alert("Robot wins");
-    cpoints += 1;
+function checkWinner() {
+  if (player == computer) {
+    return "Draw!";
+  } else if (computer == "Rock") {
+    return player == "Scissors" ? "You Win!" : "You Loose!";
+  } else if (computer == "Scissors") {
+    return player == "Rock" ? "You Win!" : "You Loose!";
+  } else if (computer == "Paper") {
+    return player == "Scissors" ? "You Win!" : "You Loose!";
   }
-  i++;
 }
-alert(`human scored ${hpoints} and Computer scored ${cpoints}`);
