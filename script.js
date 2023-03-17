@@ -2,7 +2,6 @@ const playerText = document.querySelector("#playerChoice");
 const computerText = document.querySelector("#computerChoice");
 const resultText = document.querySelector("#resultText");
 const optionBtns = document.querySelectorAll(".optionBtn");
-
 let player;
 let computer;
 let result;
@@ -19,7 +18,6 @@ optionBtns.forEach((button) =>
 
 function compChoice() {
   const rand = Math.floor(Math.random() * 3) + 1;
-
   switch (rand) {
     case 1:
       computer = "Rock";
